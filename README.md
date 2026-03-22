@@ -3,6 +3,7 @@
 Static analysis for LLM prompts. Catch clarity, security, structure, efficiency, and best-practice issues before your prompts reach production.
 
 [![npm version](https://img.shields.io/npm/v/prompt-lint.svg)](https://www.npmjs.com/package/prompt-lint)
+[![npm downloads](https://img.shields.io/npm/dt/prompt-lint.svg)](https://www.npmjs.com/package/prompt-lint)
 [![license](https://img.shields.io/npm/l/prompt-lint.svg)](https://github.com/SiluPanda/prompt-lint/blob/master/LICENSE)
 [![node](https://img.shields.io/node/v/prompt-lint.svg)](https://nodejs.org)
 [![types](https://img.shields.io/npm/types/prompt-lint.svg)](https://www.npmjs.com/package/prompt-lint)
