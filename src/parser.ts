@@ -48,7 +48,7 @@ function extractVariables(
     { re: /\{\{([a-zA-Z_][a-zA-Z0-9_]*)\}\}/g, syntax: '{{}}' },
     { re: /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g, syntax: '${}' },
     { re: /%\(([a-zA-Z_][a-zA-Z0-9_]*)\)s/g, syntax: '%(...)s' },
-    { re: /\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g, syntax: '{}' },
+    { re: /(?<!\{|\$)\{([a-zA-Z_][a-zA-Z0-9_]*)\}(?!\})/g, syntax: '{}' },
   ];
 
   const map = new Map<string, { name: string; syntax: string; occurrences: SourceLocation[] }>();

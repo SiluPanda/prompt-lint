@@ -11,7 +11,7 @@ export interface AnthropicPrompt {
   messages: Array<{ role: 'user' | 'assistant'; content: string }>;
 }
 
-export type PromptSource = string | PromptMessage[] | AnthropicPrompt | { file: string };
+export type PromptSource = string | PromptMessage[] | AnthropicPrompt;
 
 export interface SourceLocation {
   startOffset: number;

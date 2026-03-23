@@ -142,4 +142,35 @@ describe('parse() - variable extraction', () => {
     const doc = parse('No variables here.');
     expect(doc.variables).toHaveLength(0);
   });
+
+  it('does not double-extract variables from {{var}} as {var}', () => {
+    const doc = parse('Use {{user_query}} in the prompt.');
+    // Should only extract once with {{}} syntax, not also as {} syntax
+    const names = doc.variables.map(v => v.name);
+    const uniqueNames = [...new Set(names)];
+    expect(names.length).toBe(uniqueNames.length);
+    expect(doc.variables).toHaveLength(1);
+    expect(doc.variables[0].syntax).toBe('{{}}');
+  });
+
+  it('does not double-extract variables from ${var} as {var}', () => {
+    const doc = parse('Use ${user_name} in the prompt.');
+    const names = doc.variables.map(v => v.name);
+    expect(names).toHaveLength(1);
+    expect(doc.variables[0].syntax).toBe('${}');
+  });
+
+  it('extracts standalone {var} correctly', () => {
+    const doc = parse('Use {name} in the prompt.');
+    expect(doc.variables).toHaveLength(1);
+    expect(doc.variables[0].name).toBe('name');
+    expect(doc.variables[0].syntax).toBe('{}');
+  });
+
+  it('extracts mixed syntaxes without duplicates', () => {
+    const doc = parse('Hello {{greeting}}, ${user_name}, and {var}.');
+    expect(doc.variables).toHaveLength(3);
+    const syntaxes = doc.variables.map(v => v.syntax).sort();
+    expect(syntaxes).toEqual(['${}', '{{}}', '{}']);
+  });
 });
