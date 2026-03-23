@@ -1,6 +1,6 @@
 {
   "name": "prompt-lint",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Static analysis for LLM prompts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

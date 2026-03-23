@@ -10,7 +10,7 @@ function isDelimited(source: string, varSyntax: string, offset: number): boolean
   const after = source.slice(end, Math.min(source.length, end + 30));
 
   // Check XML tags: <tag>{{var}}</tag>
-  if (/<[a-z]+>\s*$/.test(before) && /^\s*<\/[a-z]+>/.test(after)) return true;
+  if (/<[a-z_]+>\s*$/i.test(before) && /^\s*<\/[a-z_]+>/i.test(after)) return true;
   // Check quotes
   if (/['"`]\s*$/.test(before) && /^\s*['"`]/.test(after)) return true;
   // Check code fences
